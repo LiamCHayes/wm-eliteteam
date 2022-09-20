@@ -158,15 +158,8 @@ class teamtracker:
             stats = pd.read_csv(filename, usecols=['Grade', 'Flash', 'Zone', 'Date'])
             stats = stats.dropna(axis=0, subset=['Grade'])
             datelist = pd.to_datetime(stats.loc[:, 'Date'], format='%d/%m/%Y')
-            i=0
-            for j in datelist:
-                print(type(j))
-                datelist[i] = j.strftime('%m/%d/%Y')
-                print(i, datelist[i], j.strftime('%m/%d/%Y'))
-                i += 1
             stats = stats[['Grade', 'Flash', 'Zone']]
             stats = pd.concat([stats, datelist], axis=1)
-            stats = stats.dropna(axis=0, subset=['Grade'])
             grade = stats.loc[:,'Grade']
             gradenum = [None] * grade.size
             i=0
