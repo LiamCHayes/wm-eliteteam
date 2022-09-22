@@ -169,7 +169,6 @@ class teamtracker:
             stats_disp = stats.iloc[-3:]
             df_string = stats_disp.to_string(header=False, index=False, index_names=False).split()
             df_string = [' '.join(ele.split()) for ele in df_string]
-            print(df_string)
 
             # output
             if df_string[0] != 'Empty':
