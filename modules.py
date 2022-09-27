@@ -57,60 +57,8 @@ class teamtracker:
 
     def getinput(self):
         # Gets prompt for program
-        self.newdata = input('\n\nName     Lift    Weight            Reps\nName     Grade   Flash(T/F)        Zone\nLookup   Name    Climb/Lift/Goal\n\nBenchmark to input a benchmark\nGroup to make groups\nQuit to quit\n............\n>')
+        self.newdata = input('\n\nName     Lift    Weight            Reps\nName     Grade   Flash(T/F)        Zone\nLookup   Name    Climb/Lift/Goal\n\nGroup to make groups\nQuit to quit\n............\n>')
         return self.newdata
-
-    def benchmark(self): # NEEDS TO BE FINISHED (line 79, 88, 91. Also add function to catch misspelling, add member to team from benchmark screen)
-        # Get benchmark data and write to benchmark.csv
-        print('\nBenchmark Types: ', self.benchmark_fields)
-        bench_data = input('Name Benchmark_type Benchmark_value\n>')
-
-        #split input to add to CSV
-        splitdata = bench_data.split()
-        i = 0
-        for j in splitdata:
-            splitdata[i] = j.capitalize()
-            i+=1
-
-        #parse fields to get correct benchmark type
-        while True:
-            bench_id = 0
-            for k in self.benchmark_fields:
-                btype = splitdata[1] == k
-                if btype:
-                    benchmark_type = k
-                    break
-                else:
-                    bench_id += 1
-                    btype = False
-            
-            if not btype:
-                print('[ERROR]: ', splitdata[1], ' is not a current benchmark type. Would you like to add it? Type respell to respell')
-                add_benchmark = input('(add/respell/quit)>')
-                if add_benchmark.capitalize() == 'Add':
-                    # add a column to the csv file here
-                    break
-                elif add_benchmark.capitalize() == 'Respell':
-                    splitdata[1] = input('Benchmark type: ').capitalize()
-                else:
-                    break
-            else:
-                break
-
-        #standardize benchmark data to input 
-        now = datetime.now()
-        dt_string = now.strftime('%d/%m/%Y')
-        date = dt_string
-
-        bench_row = [None] * (len(self.benchmark_fields) + 1)
-        bench_row[0] = date
-        #bench_row[1] = 
-        bench_row[2] = splitdata[0]
-        bench_row[bench_id] = splitdata[2]
-
-        with open('data/benchmarks.csv', 'a', newline='') as f:
-            writer = csv.writer(f,  delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
-            writer.writerow(bench_row)
 
     def input_data(self):
         # Write data to CSV
