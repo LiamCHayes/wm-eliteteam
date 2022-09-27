@@ -7,6 +7,7 @@ from itertools import islice
 from datetime import datetime
 import pandas as pd
 from datetime import date
+from datetime import time
 import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
@@ -290,6 +291,48 @@ class teamtracker:
 
         # wait for keypress to continue
         input('\n\nPress enter...')
+
+class onsite:
+    def __init__(self):
+        self.numGroups = None
+        self.climbTime = None
+        self.attempts = None
+        self.groups = []
+        self.climbs = []
+        self.grades = []
+
+    def setParams(self):
+        print('\n\nONSITE PARAMETERS')
+        self.numGroups = int(input('Number of onsite groups: '))
+        self.climbTime = int(input('Time limit for each boulder: '))
+        self.attempts = int(input('Attempt limit for each boulder: '))
+        for i in range(self.numGroups):
+            print('\n\nGROUP', i+1)
+            # group names
+            print('Enter the members in group', i+1, '(space separated)')
+            group = input('>')
+            self.groups.append(group.split())
+
+            # group climbs
+            print('Enter the climbs for group', i+1, '(space separated)')
+            groupClimbs = input('>')
+            self.climbs.append(groupClimbs.split())
+
+        # grades for climbs
+        i=1
+        for j in self.climbs:
+            groupGrade = []
+            print('\n\nGRADES GROUP', i)
+            for k in j:
+                print('Enter the grade of', k)
+                groupGrade.append(input('>'))
+            self.grades.append(groupGrade)
+            i+=1
+    
+    def roundStart():
+        # start rounds
+        input('\n\nPress enter to begin...')
+
 
 
         
