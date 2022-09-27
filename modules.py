@@ -60,7 +60,7 @@ class teamtracker:
         self.newdata = input('\n\nName     Lift    Weight            Reps\nName     Grade   Flash(T/F)        Zone\nLookup   Name    Climb/Lift/Goal\n\nBenchmark to input a benchmark\nGroup to make groups\nQuit to quit\n............\n>')
         return self.newdata
 
-    def benchmark(self): # NEEDS TO BE FINISHED (line 79, 88, 92. Also add function to catch misspelling, add member to team from benchmark screen)
+    def benchmark(self): # NEEDS TO BE FINISHED (line 79, 88, 91. Also add function to catch misspelling, add member to team from benchmark screen)
         # Get benchmark data and write to benchmark.csv
         print('\nBenchmark Types: ', self.benchmark_fields)
         bench_data = input('Name Benchmark_type Benchmark_value\n>')
