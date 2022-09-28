@@ -329,11 +329,17 @@ class onsite:
             self.grades.append(groupGrade)
             i+=1
     
-    def roundStart():
+    def roundStart(self):
         # start rounds
         input('\n\nPress enter to begin...')
 
+        # for each group:
+        for i in range(self.numGroups):
+            print('\n\nGROUP', i+1, 'ONSITE ROUND')
+            for j in self.climbs[i]:
+                for k in self.groups[i]:
+                    print(k, 'on', j)
+                    input('Press enter to continue...')
 
 
-        
 
