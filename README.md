@@ -8,4 +8,4 @@ Run tracker.py for a command line tool to input and lookup data during practices
 
 Run onsite.py to create and run onsite rounds (Not finished yet)
 
-Run benchmark.py to input benchmarke (Not finished yet)
+Run benchmark.py to input benchmark (Not finished yet)
