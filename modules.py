@@ -174,7 +174,7 @@ class teamtracker:
                 axs[2].set_title('Not Flashes', fontweight='bold')
                 axs[2].tick_params(axis='both', which='both', bottom=False, top=False, left=False, labelbottom=True)
                 #progress
-                axs[3].plot(stats['Date'], stats['Grade'], alpha=.7)
+                axs[3].scatter(stats['Date'], stats['Grade'], alpha=.7)
                 axs[3].set_title('Progress', fontweight='bold')
                 axs[3].tick_params(axis='both', which='both', bottom=False, top=False, left=False, labelbottom=False)
                 #formatting for all plots
