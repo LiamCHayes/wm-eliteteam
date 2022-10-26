@@ -1,0 +1,39 @@
+---
+title: "Elite Team Progress Report"
+author: "Liam Hayes"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd("C:/Users/lchco/OneDrive/Python/eliteteam")
+df <- read.csv('data/Trent.csv') ## CHANGE NAME HERE TO GENERATE A REPORT FOR EACH TEAM MEMBER
+library(ggplot2)
+library(tidyverse)
+```
+
+## Summary
+
+*Summary Here*
+
+## Climbing Progress
+```{r, echo=FALSE}
+climb <- df %>%
+  select(Date, Grade, Flash, Zone) %>%
+  filter(!is.na(Flash))
+  
+par(mfrow=c(1,2))
+ggplot(data=climb) +
+  geom_point(aes(x=Date, y=Grade, col=Flash)) +
+  labs(title='Sends by Flash')
+
+ggplot(data=climb) +
+  geom_point(aes(x=Date, y=Grade, col=Zone)) +
+  labs(title='Sends by Zone')
+```
+
+
+
+## General Fitness Metrics
+
