@@ -1,0 +1,98 @@
+---
+title: "Individual Progress Report"
+#author: "Liam Hayes"
+#date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(tidyverse)
+library(scales)
+```
+
+```{r, echo=FALSE}
+## CHANGE NAME HERE TO GENERATE A REPORT FOR EACH TEAM MEMBER
+df <- read.csv('C:/Users/lchco/OneDrive/Python/eliteteam/data/Trent.csv')
+colnames(df)[1] <- 'Date' # catch edge case of bad column names
+```
+
+<br>
+
+## Summary
+***
+
+*Summary Here*
+
+<br>
+
+# Climbing Progress
+***
+
+
+```{r, echo=FALSE}
+climb <- df %>%
+  select(Date, Grade, Flash, Zone) %>%
+  filter(!is.na(Flash)) %>%
+  mutate(Date=as.Date(Date, "%d/%m/%y"))
+  
+zonedf <- climb %>%
+  group_by(Zone) %>%
+  summarise(count = n())
+  
+ggplot(data=climb) +
+  geom_point(aes(x=Date, y=Grade, col=Flash, shape=Flash), size=5) +
+  labs(title='Notable Sends', x='', y='') +
+  theme(axis.ticks = element_blank(), 
+        axis.title.x = element_text(vjust=-0.45),
+        axis.title.y = element_text(vjust=0.45),
+        plot.title = element_text(size=16),
+        legend.key = element_rect(fill='transparent'),
+        legend.title = element_blank(),
+        panel.grid.minor = element_blank(),
+        ) +
+  scale_color_discrete(labels=c('No Flash', 'Flash')) +
+  scale_shape_discrete(labels=c('No Flash', 'Flash')) +
+  scale_x_date(date_labels = "%b %d")
+```
+<br><br>
+```{r, echo=FALSE}
+ggplot(data=zonedf, aes(x=reorder(Zone, (-count)), y=count, fill=Zone)) +
+  geom_bar(stat = 'identity') +
+  labs(title='   Notable Sends by Zone', y='', x='') +
+  theme(axis.ticks = element_blank(), 
+        axis.text.y = element_blank(),
+        axis.title.x = element_text(vjust=-0.45),
+        axis.title.y = element_text(vjust=0.45),
+        plot.title = element_text(size=16),
+        legend.position = 'none', 
+        panel.background = element_rect(fill = "transparent", colour = NA_character_),
+        panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(), 
+        plot.background = element_rect(fill = "transparent", colour = NA_character_)
+        ) 
+```
+
+
+<br>
+
+# General Fitness Metrics
+***
+
+
+```{r out.width=c('50%', '50%'), fig.show='hold', echo=FALSE}
+lift <- df %>%
+  filter(is.na(Flash)) %>%
+  select(Date, Lift, Weight, Reps)
+
+for (j in unique(lift$Lift)) {
+  lifti <- lift %>%
+    filter(Lift==j)
+  p1 <- ggplot(data=lifti) +
+      geom_point(aes(x=Date, y=Weight), size=3) +
+      labs(title=j)
+  print(p1)
+}
+```
+
