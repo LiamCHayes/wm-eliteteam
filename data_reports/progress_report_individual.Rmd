@@ -14,7 +14,7 @@ library(scales)
 
 ```{r, echo=FALSE}
 ## CHANGE NAME HERE TO GENERATE A REPORT FOR EACH TEAM MEMBER
-df <- read.csv('C:/Users/lchco/OneDrive/Python/eliteteam/data/Trent.csv')
+df <- read.csv('C:/Users/lchco/OneDrive/Python/eliteteam/data/Derek.csv')
 colnames(df)[1] <- 'Date' # catch edge case of bad column names
 df <- df %>% mutate(Date=as.Date(Date, "%d/%m/%y"))
 ```
